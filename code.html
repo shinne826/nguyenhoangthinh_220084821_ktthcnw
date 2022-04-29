@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.6.0.min.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+    <script src="../JS/js.js"></script>
+</head>
+<script>
+    $(document).ready(function(){
+        var i=1;
+        $("#btn2").click(function(){
+            $("#myModal").modal();
+        });
+        
+        function kiemtraten(){
+            var = 1;
+            let maukt = /[A-Z]{1}[a-z]+)((\s{1}[a-z]+){1,})$/;
+            if ($("#Name").val() == ""){
+                $("#tbName").html("Khong De Trong");
+                return false;
+            }
+            if(!maukt.test($("#Name").val())){
+                $("#tbName").html("moi ki tu dau viet hoa khong dung so");
+                return true;
+            }
+            $("tbName").html("*");
+            return true;
+        }
+        $("Name").blur(kiemtraten);
+
+        function kiemtrasoao(){
+            var maukt=/^\d*$/;
+            if($("#Ao").val()==" "){
+                $("#tbAo").html("ko de trong");
+                return false;
+            }
+            if(!maukt.test($("#Ao").val())){
+                $("#tbAo").html("dung 1 so tu 1 toi 9");
+                return true;
+            }else{
+                var soao = $("#Ao").val();
+                if(soao < 1 || soao > 9){
+                    $("#tbAo").html("tu 1 den 9");
+                }else{
+                    $("#tbName").html("*");
+                    return true;
+                }
+            }
+        }
+        $("#Ao").blur(kiemtrasoao);
+
+        function kiemtracaulacbo(){
+            var maukt = /[A-Z]{1}[a-z]+)((\s{1}[a-z]+){1,})$/;
+            if($("#clb").val() == ""){
+                $("#tbclb").html("khong duoc de trong");
+                return false;
+            }
+            if (!maukt.test($("#clb").val())){
+                $("#tbclb").html("Moi Ky Tu Dau Viet Hoa Khong Dung So");
+                return true;
+            }
+            $("tbclb").html("*");
+            return true;
+        }
+        $("#tbclb").blur(kiemtracaulacbo);
+        
+        function kiemtraNTT(){
+            if($("#ntt").val() == ""){
+                $("#tbntt").html("Khong duoc de trong");
+                return false;
+            }
+            var today = new Date();
+            var ntt = new Date($("#ntt").val());
+            today = today.setDate(today.getDate()+15);
+            if(today>ntt){
+                $("#tbngaytaptrung").html("Phai sau ngay hien hanh 15 ngay");
+                return false;
+            }
+            $("tbntt").html(*);
+            return true;
+        }
+        $("#ntt").blur(kiemtraNTT)
+
+        function kiemtrasdt(){
+            var maukt = /^0\d{3}-\d{3}-\d{3}$
+            if($("#sdt").val()==""){
+                $("#tbsdt").html("khong duoc de trong");
+            }
+            if(!maukt.test($("#sdt").val())){
+                $("#tbsdt").html("Theo dang 0xxx-xxx-xxx trong do x la so tu 0-9");
+                return true;
+            }
+            $("#tbsdt").html("*");
+            return true;
+        }
+        $("#sdt").html(*);
+    })
+</script>
+<body>
+    <div class="container">
+        <div class="col-xl-12">
+            <img src="../IMG/Header.PNG" width="100%" alt="">
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-12">
+            <nav class="navbar navbar-expand-sm" style="margin-left: 220px;">
+                <ul class="navbar-nav">
+                    <li class="navbar-item"><a href="#" class="navbar-link" style="margin-right: 20px;" id="btn1">Đăng Nhập</a>
+                    </li>
+                    <li class="navbar-item"><a href="#" class="navbar-link" id="btn2">Đăng Ký</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <h1 style="text-align: center;">Danh Sach Doi Tuyen Viet Nam</h1>
+        <table class="table table-striped" role="table" id="danhsach">
+        <tr>
+            <th>STT</th>
+            <th>Ho Ten</th>
+            <th>So Ao</th>
+            <th>Cau Lac Bo</th>
+            <th>Ngay Tap Trung</th>
+            <th>So Dien Thoai</th>
+            <th>Anh Dai Dien</th>
+        </tr>
+    </table>
+    <footer>
+        <div class="col-xs-12">
+            <p ali="center" style="margin-top: 40px;">20084821|Nguyen Hoang Thinh</p>
+        </div>
+    </footer>
+    <div class="modal fade" role="dialog" id="myModal">
+        <div class="modal-dialog" style="margin-top: 10px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 align="center">THÔNG TIN CÁ NHÂN</h2>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" style="margin-top: 10px;">
+                    <label for="Name" class="control-label col-xs-3">Ho Ten</label>
+                    <div class="col-xs-9">
+                        <input type="text" id="Name" class="form-control">
+                        <span class="text-danger" id="tbName">*</span>
+                    </div>
+                    <label for="Ao" class="control-label col-xs-3">So Ao</label>
+                    <div class="col-xs-9" style="margin-bottom: 10px;">
+                        <input type="text" id="Ao" class="form-control">
+                        <span class="text-danger" id="tbAo">*</span>
+                    </div>
+                    <label for="clb" class="control-label col-xs-3">Cau Lac Bo</label>
+                    <div class="col-xs-9" style="margin-top: 10px;">
+                        <input type="text" id="clb" class="form-control">
+                        <span class="text-danger" id="tbclb">*</span>
+                    </div>
+                    <label for="ntt" class="control-label col-xs-3">Ngay Tap Trung</label>
+                    <div class="col-xs-9">
+                        <input type="date" id="ntt" class="form-control">
+                        <span class="text-danger" id="tbntt">*</span>
+                    </div>
+                    <label for="sdt" class="control-label col-xs-3">So Dien Thoai</label>
+                    <div class="col-xs-9">
+                        <input type="sdt" id="sdt" class="form-control">
+                        <span class="text-danger" id="tbsdt">*</span>
+                    </div>
+                    <label for="add" class="control-label col-xs-3">Anh Dai Dien</label>
+                    <div class="col-xs-9">
+                        <input type="file" id="add" class="form-control">
+                        <span class="text-danger" id="tbadd">*</span>
+                    </div>
+                    <button class="btn btn-success btn-group-jutified" id="save" type="button">Luu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
